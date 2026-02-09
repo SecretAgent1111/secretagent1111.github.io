@@ -1,15 +1,47 @@
 body {
-  background: black;
+  background: #000;
   color: #00ffcc;
   font-family: monospace;
+  margin: 0;
 }
 
 .terminal {
   border: 1px solid #00ffcc;
   padding: 20px;
   margin: 40px;
+  box-shadow: 0 0 12px rgba(0, 255, 204, 0.4);
+}
+
+.cmd {
+  color: #00ffcc;
+}
+
+.subtitle {
+  color: #ffffff;
+  margin-top: 5px;
 }
 
 .glitch {
-  text-shadow: 2px 0 magenta, -2px 0 cyan;
+  color: #ff00ff;
+  text-shadow: 2px 0 cyan, -2px 0 magenta;
 }
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul li::before {
+  content: "➜ ";
+  color: #00ffcc;
+}
+
+a {
+  color: #00ffcc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-shadow: 0 0 8px #00ffcc;
+}
+
