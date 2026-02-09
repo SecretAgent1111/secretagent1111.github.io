@@ -24,6 +24,22 @@
   <a href="labs.html">$ cd labs</a>
 </div>
 
+  <script>
+  const text = "Varun Sai Yadla";
+  let i = 0;
+  const el = document.querySelector("h1");
+
+  el.innerHTML = "";
+  function type() {
+    if (i < text.length) {
+      el.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, 80);
+    }
+  }
+  type();
+</script>
+
 
 </body>
 </html>
