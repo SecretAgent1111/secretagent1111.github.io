@@ -56,3 +56,12 @@ a {
 a:hover {
   text-shadow: 0 0 10px #00ffcc;
 }
+
+
+img {
+  width: 100%;
+  margin-top: 15px;
+  border: 1px solid #00ffcc;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+}
+
