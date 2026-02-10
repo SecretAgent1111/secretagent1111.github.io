@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Labs | Varun Sai Yadla</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
 <div class="terminal">
   <p class="cmd">$ cat splunk-bruteforce-usecase.txt</p>
 
@@ -13,35 +23,56 @@
 
   <p><strong>Data Source:</strong></p>
   <ul>
-    <li>Windows Security Event Logs</li>
+    <li>Windows Security Event Logs (Event ID 4625)</li>
     <li>Authentication logs ingested into Splunk</li>
   </ul>
 
   <p><strong>Detection Logic:</strong></p>
   <ul>
-    <li>Multiple failed login attempts from same source</li>
+    <li>Multiple failed login attempts from the same source</li>
     <li>Threshold-based detection within a defined time window</li>
-    <li>False positive reduction through filtering</li>
+    <li>False positive reduction through filtering and correlation</li>
   </ul>
 
-  <p><strong>Splunk Query:</strong></p>
+  <p><strong>Splunk Query (Initial Detection):</strong></p>
   <pre>
 index=windows sourcetype=WinEventLog:Security EventCode=4625
 | stats count by Account_Name, Source_Network_Address
 | where count > 5
   </pre>
 
+  <p><strong>Improved Detection Logic:</strong><br>
+  Detection was enhanced using time-based aggregation and success vs failure
+  correlation to reduce noise and improve alert accuracy.</p>
+
+  <pre>
+index=* (EventCode=4624 OR EventCode=4625)
+| bin _time span=5m
+| stats count as Attempts,
+        count(eval(match(Keywords,"Audit Failure"))) as Failed,
+        count(eval(match(Keywords,"Audit Success"))) as Success
+        by _time, Account_Name
+| where Attempts > 5 AND Failed > 2
+  </pre>
+
   <p><strong>Alerting:</strong></p>
   <ul>
-    <li>Alert triggered when threshold is exceeded</li>
+    <li>Alert triggered when failed login attempts exceed defined threshold</li>
     <li>Severity set to Medium</li>
-    <li>Integrated with SOC alert workflow</li>
+    <li>Integrated into SOC alert triage workflow</li>
   </ul>
 
   <p><strong>Blue Team Takeaway:</strong><br>
-  Demonstrates how SIEM-based detections help identify credential abuse early
-  and reduce attacker dwell time.</p>
+  This use case demonstrates how SIEM-based detections help identify credential
+  abuse early, reduce attacker dwell time, and support effective SOC response.</p>
 
   <img src="images/SPLUNKQUERY.png" alt="Splunk brute-force detection query">
   <img src="images/BRUTEFORCERESULT.png" alt="Splunk brute-force alert result">
 </div>
+
+<div class="terminal">
+  <a href="index.html" class="cmd">$ cd ..</a>
+</div>
+
+</body>
+</html>
