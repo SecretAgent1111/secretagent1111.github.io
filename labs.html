@@ -1,25 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Labs | Varun</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
 <div class="terminal">
-  <p>$ ls labs</p>
-  <p>siem-log-analysis.txt</p>
+  <p class="cmd">$ cat splunk-bruteforce-usecase.txt</p>
+
+  <p><strong>Title:</strong> Splunk Use Case: Detecting and Generating Alerts on Brute-Force Attempts</p>
+
+  <p><strong>Objective:</strong><br>
+  Detect repeated failed authentication attempts and generate alerts using Splunk.</p>
+
+  <p><strong>Overview:</strong><br>
+  Brute-force attacks attempt multiple login combinations to gain unauthorized access.
+  Early detection helps prevent account compromise and reduces attacker dwell time.</p>
+
+  <p><strong>Data Source:</strong></p>
+  <ul>
+    <li>Windows Security Event Logs</li>
+    <li>Authentication logs ingested into Splunk</li>
+  </ul>
+
+  <p><strong>Detection Logic:</strong></p>
+  <ul>
+    <li>Multiple failed login attempts from same source</li>
+    <li>Threshold-based detection within a time window</li>
+    <li>False positive reduction through filtering</li>
+  </ul>
+
+  <p><strong>Splunk Query:</strong></p>
+  <pre>
+index=windows sourcetype=WinEventLog:Security EventCode=4625
+| stats count by Account_Name, Source_Network_Address
+| where count > 5
+  </pre>
+
+  <p><strong>Alerting:</strong></p>
+  <ul>
+    <li>Alert triggered when threshold is exceeded</li>
+    <li>Severity set to Medium</li>
+    <li>Integrated with SOC alert workflow</li>
+  </ul>
+
+  <!-- Screenshots go below -->
 </div>
-
-<div class="terminal">
-  <p>$ cat siem-log-analysis.txt</p>
-  <p>
-    Analyzed authentication logs using SIEM.
-    Detected brute-force attempts and filtered false positives.
-  </p>
-</div>
-
-<a href="index.html">$ cd ..</a>
-
-</body>
-</html>
