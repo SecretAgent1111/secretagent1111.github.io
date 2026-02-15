@@ -1,69 +1,77 @@
 const input = document.getElementById("commandInput");
 const screen = document.getElementById("screen");
 
-function bootMessage() {
-  return `
-Welcome to secure-shell
+function boot() {
+  screen.innerHTML = "";
+  print(`
+secure-shell initialized
 
 Type 'help' to see available commands.
-`;
+`);
 }
 
 const commands = {
   help: `
 Available commands:
 
-personal     → Personal details
-certs        → Certifications (highlighted)
-labs         → TryHackMe rooms & labs
-experience   → Work experience
-education    → Education & research
-clear        → Clear the terminal
+personal
+certs
+labs
+splunk
+experience
+education
+clear
 `,
 
   personal: `
-Name      : Varun Sai Yadla
-Location  : Hyderabad, Telangana, India
-Focus     : Blue Team | SOC | Threat Detection
-Email     : yadlavarun11@gmail.com
-LinkedIn  : linkedin.com/in/varunsaiyadla
+Name     : Varun Sai Yadla
+Location : Hyderabad, India
+Focus    : Blue Team | SOC | Threat Detection
+Email    : yadlavarun11@gmail.com
+LinkedIn : linkedin.com/in/varunsaiyadla
 `,
 
   certs: `
-⭐ CERTIFICATIONS ⭐
+CERTIFICATIONS
 
 • Cyber Security 101 (SEC1)
 • SOC Level 1 Certificate
 • CompTIA Network+ (N10-009)
 • Advanced Certification Program in Cybersecurity
 
-🏅 TryHackMe Rank: Top 2%
+TryHackMe: Top 2%
 `,
 
   labs: `
-🧪 TRYHACKME ROOMS
+TRYHACKME / SOC LABS
 
 • CupidBot
-  - Exploited insecure AI prompt handling
-  - Used prompt injection techniques
-  - Forced AI to reveal restricted information
+  - AI prompt injection
+  - LLM misuse exploitation
 
-• SOC Level 1
-  - Alert triage and incident investigation
+• Splunk SOC Labs
+  - SIEM alert analysis
+  - Log investigation
+  - Detection engineering
 
-• Network Fundamentals
-• Web Fundamentals
+Type 'splunk' to view detailed Splunk labs.
+`,
+
+  splunk: `
+Opening Splunk Labs...
+
+👉 https://YOUR_USERNAME.github.io/terminal-portfolio/splunk.html
 `,
 
   experience: `
-💼 EXPERIENCE
+EXPERIENCE
 
 InfoSec4TC – Cyber Security Specialist
 Cartel Software – Cyber Security Analyst
 `,
 
   education: `
-🎓 EDUCATION
+EDUCATION
 
 MSc Applied Cyber Security
 Queen’s University Belfast
@@ -75,25 +83,22 @@ Geethanjali College of Engineering & Technology
   clear: "CLEAR"
 };
 
-// Boot message on load
-screen.innerHTML = "";
-addOutput(bootMessage());
+boot();
 
 input.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
     const cmd = input.value.trim().toLowerCase();
-    addCommand(cmd);
+    print(`varun@sec-lab:~$ ${cmd}`);
 
     if (commands[cmd]) {
       if (commands[cmd] === "CLEAR") {
-        screen.innerHTML = "";
-        addOutput(bootMessage());
+        boot();
       } else {
-        addOutput(commands[cmd]);
+        print(commands[cmd]);
       }
     } else {
-      addOutput(`command not found: ${cmd}
-Refresh The Page Please.`);
+      print(`command not found: ${cmd}
+Type 'help' to list commands.`);
     }
 
     input.value = "";
@@ -101,15 +106,9 @@ Refresh The Page Please.`);
   }
 });
 
-function addCommand(cmd) {
-  const p = document.createElement("p");
-  p.innerHTML = `<span class="prompt">varun@sec-lab:~$</span> ${cmd}`;
-  screen.appendChild(p);
-}
-
-function addOutput(text) {
-  const pre = document.createElement("pre");
-  pre.className = "output";
-  pre.textContent = text;
-  screen.appendChild(pre);
+function print(text) {
+  const div = document.createElement("div");
+  div.className = "output";
+  div.textContent = text;
+  screen.appendChild(div);
 }
