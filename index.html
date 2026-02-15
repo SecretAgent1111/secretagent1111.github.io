@@ -1,135 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Varun Sai Yadla | Portfolio </title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>varun@sec-lab</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div class="terminal">
-  <p class="cmd">$ whoami</p>
-  <h1 id="name" class="glitch"></h1>
-  <p class="subtitle">
-    Cybersecurity Trained Analyst | Blue Team | SOC
-  </p>
+  <div class="header">
+    <span></span><span></span><span></span>
+    <p>secure-shell</p>
+  </div>
+
+  <div class="screen" id="screen">
+    <p><span class="prompt">varun@sec-lab:~$</span> whoami</p>
+    <p class="output">
+      Varun Sai Yadla<br>
+      Cybersecurity Trained Graduate | Blue Team | SOC Enthusiast
+    </p>
+
+    <p><span class="prompt">varun@sec-lab:~$</span> help</p>
+    <p class="output">
+      Available commands:<br>
+      → personal<br>
+      → certs<br>
+      → labs<br>
+      → experience<br>
+      → education<br>
+      → clear
+    </p>
+  </div>
+
+  <div class="input-line">
+    <span class="prompt">varun@sec-lab:~$</span>
+    <input type="text" id="commandInput" autofocus />
+  </div>
 </div>
 
-<div class="terminal">
-  <p class="cmd">$ cat summary.txt</p>
-  <p>
-    Cybersecurity Trained Analyst with practical experience in security alert
-    analysis, threat hunting, and phishing analysis across enterprise and lab
-    environments.
-  </p>
-  <p>
-    Experienced in SIEM monitoring and log analysis using Splunk and IBM QRadar,
-    with focus on intrusion detection, malware indicators, MITRE ATT&CK
-    techniques, and reducing false positives through research and validation.
-  </p>
-  <p>
-    Strong understanding of both attacker and defender techniques, supported by
-    hands-on offensive security experience and continuous practice on
-    TryHackMe (Top 2% worldwide).
-  </p>
-</div>
-
-<div class="terminal">
-  <p class="cmd">$ ls skills</p>
-  <ul>
-    <li>SIEM Monitoring & Log Analysis (Splunk, IBM QRadar, Microsoft Sentinel)</li>
-    <li>Security Alert Triage & Event Correlation</li>
-    <li>False Positive Analysis & Alert Validation</li>
-    <li>Network Traffic Analysis (Wireshark, tcpdump)</li>
-    <li>IDS / IPS Monitoring & Intrusion Detection</li>
-    <li>Endpoint Security & Malware Behavior Analysis</li>
-    <li>Phishing, Brute-Force & Web Attack Detection</li>
-    <li>Vulnerability Assessment & CVSS Scoring</li>
-    <li>MITRE ATT&CK Mapping</li>
-    <li>Linux, Kali Linux & Windows Operating Systems</li>
-    <li>Basic Scripting & Automation (Python, Bash)</li>
-  </ul>
-</div>
-
-<div class="terminal">
-  <p class="cmd">$ cat certifications.txt</p>
-  <ul>
-    <li>Certified Ethical Hacker (CEH v13)</li>
-    <li>CompTIA Network+</li>
-    <li>Certified eJPT (Junior Penetration Tester)</li>
-    <li>TryHackMe Certified SEC1 (Hands-on Exam)</li>
-    <li>CompTIA IT Fundamentals+ (ITF+)</li>
-    <li>
-      Online Certificate Training Program in Cyber Security & Ethical Hacking
-      — National Institute of Electronics and Information Technology (NIELIT),
-      Haridwar
-    </li>
-    <li>Microsoft Cyber Security Analyst Certificate</li>
-    <li>Google Cybersecurity Certificate</li>
-    <li>
-      Certified Information Assurance Professional —
-      Defence Institute of Advanced Technology
-    </li>
-  </ul>
-</div>
-
-<div class="terminal">
-  <p class="cmd">$ cat experience.txt</p>
-
-  <p><strong>Training on SOC Analyst (Splunk & QRadar)</strong></p>
-  <p>HackerSchool | Hyderabad | Dec 2025 – Jan 2026</p>
-  <ul>
-    <li>Performed security alert monitoring and initial triage using Splunk and IBM QRadar</li>
-    <li>Analyzed network logs, endpoint events, and traffic flows</li>
-    <li>Investigated offenses, assets, dashboards, and reports in QRadar</li>
-    <li>Worked with SPL queries, visualizations, and alert creation in Splunk</li>
-    <li>Assisted with incident response and SOAR workflows</li>
-  </ul>
-
-  <p><strong>Cybersecurity Intern</strong></p>
-  <p>Cartel Software Pvt Ltd | Hyderabad | May 2024 – Aug 2024</p>
-  <ul>
-    <li>Performed network and packet analysis to identify suspicious activity</li>
-    <li>Worked with firewalls, IDS/IPS, VPNs, and defensive controls</li>
-    <li>Assisted in vulnerability assessment and penetration testing activities</li>
-    <li>Explored web application security and OWASP Top 10 vulnerabilities</li>
-  </ul>
-</div>
-
-<div class="terminal">
-  <p class="cmd">$ cat education.txt</p>
-  <ul>
-    <li>
-      MSc Applied Cyber Security — Queen’s University Belfast (2025)<br>
-      Awarded Commendation for Academic Performance
-    </li>
-    <li>
-      B.Tech Computer Science Engineering (Cyber Security) — GCET (2024)<br>
-      Graduated with First Class Honours
-    </li>
-  </ul>
-</div>
-
-<div class="terminal">
-  <a href="labs.html" class="cmd">$ cd labs</a>
-  <p class="hint"># click to view hands-on labs</p>
-</div>
-
-
-<script>
-  const text = "Varun Sai Yadla";
-  let i = 0;
-  const el = document.getElementById("name");
-
-  function type() {
-    if (i < text.length) {
-      el.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(type, 70);
-    }
-  }
-  type();
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
