@@ -93,7 +93,7 @@ input.addEventListener("keydown", function (e) {
       }
     } else {
       addOutput(`command not found: ${cmd}
-Type 'help' to list available commands.`);
+Refresh The Page Please.`);
     }
 
     input.value = "";
