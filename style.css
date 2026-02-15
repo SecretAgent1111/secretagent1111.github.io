@@ -1,80 +1,54 @@
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  background: #000;
-  color: #00ffcc;
-  font-family: monospace;
+body {
   margin: 0;
-  padding: 0;
+  background: #050b12;
+  font-family: "Fira Code", monospace;
+  color: #c9faff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .terminal {
-  border: 1px solid #00ffcc;
+  width: 900px;
+  background: #000;
+  border: 2px solid #00ffd5;
+  box-shadow: 0 0 30px #00ffd5;
+}
+
+.header {
+  padding: 8px;
+  border-bottom: 2px solid #00ffd5;
+  color: #00ffd5;
+}
+
+.screen {
   padding: 20px;
-  margin: 40px;
-  background: #000;
-  box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-  transition: box-shadow 0.3s ease;
+  height: 420px;
+  overflow-y: auto;
+  white-space: pre-wrap;
 }
 
-.terminal:hover {
-  box-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
+.prompt {
+  color: #00ffd5;
 }
 
-.cmd {
-  color: #00ffcc;
+.output {
+  margin-bottom: 10px;
 }
 
-.subtitle {
+.input-line {
+  padding: 12px;
+  border-top: 2px solid #00ffd5;
+  display: flex;
+}
+
+input {
+  background: transparent;
+  border: none;
+  outline: none;
   color: #ffffff;
-  margin-top: 5px;
-}
-
-.glitch {
-  color: #ff00ff;
-  text-shadow: 2px 0 cyan, -2px 0 magenta;
-}
-
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-ul li::before {
-  content: "➜ ";
-  color: #00ffcc;
-}
-
-a {
-  color: #00ffcc;
-  text-decoration: none;
-}
-
-a:hover {
-  text-shadow: 0 0 10px #00ffcc;
-}
-
-.hint {
-  color: #888;
-  font-size: 0.9em;
-  margin-top: 6px;
-}
-
-img {
+  font-family: inherit;
+  font-size: 1em;
   width: 100%;
-  margin-top: 15px;
-  border: 1px solid #00ffcc;
-  background: #000;
-  box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
-}
-
-pre {
-  background: #050505;
-  color: #00ffcc;
-  padding: 15px;
-  border: 1px solid #00ffcc;
-  overflow-x: auto;
-  box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
 }
