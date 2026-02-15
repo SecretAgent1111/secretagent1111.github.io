@@ -1,6 +1,8 @@
 const input = document.getElementById("commandInput");
 const screen = document.getElementById("screen");
 
+/* ================= BOOT ================= */
+
 function boot() {
   screen.innerHTML = "";
   print(`
@@ -10,17 +12,19 @@ Type 'help' to see available commands.
 `);
 }
 
+/* ================= COMMANDS ================= */
+
 const commands = {
   help: `
 Available commands:
 
-personal
-certs
-labs
-splunk
-experience
-education
-clear
+personal     → Personal details
+certs        → Certifications
+labs         → TryHackMe & SOC labs
+splunk       → Open Splunk SOC labs
+experience   → Work experience
+education    → Education
+clear        → Clear terminal
 `,
 
   personal: `
@@ -39,7 +43,7 @@ CERTIFICATIONS
 • CompTIA Network+ (N10-009)
 • Advanced Certification Program in Cybersecurity
 
-TryHackMe: Top 2%
+TryHackMe Rank: Top 2%
 `,
 
   labs: `
@@ -54,14 +58,16 @@ TRYHACKME / SOC LABS
   - Log investigation
   - Detection engineering
 
-Type 'splunk' to view detailed Splunk labs.
+Type 'splunk' to open detailed Splunk labs.
 `,
 
-  splunk: `
-Opening Splunk Labs...
-
-👉 https://varunsaiyadla.github.io/terminal-portfolio/splunk.html
-`,
+  splunk: () => {
+    print("Opening Splunk Labs in new tab...");
+    window.open(
+      "https://secretagent1111.github.io/splunk.html",
+      "_blank"
+    );
+  },
 
   experience: `
 EXPERIENCE
@@ -83,7 +89,11 @@ Geethanjali College of Engineering & Technology
   clear: "CLEAR"
 };
 
+/* ================= INIT ================= */
+
 boot();
+
+/* ================= INPUT HANDLER ================= */
 
 input.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
@@ -93,18 +103,22 @@ input.addEventListener("keydown", function (e) {
     if (commands[cmd]) {
       if (commands[cmd] === "CLEAR") {
         boot();
+      } else if (typeof commands[cmd] === "function") {
+        commands[cmd]();
       } else {
         print(commands[cmd]);
       }
     } else {
       print(`command not found: ${cmd}
-Type 'help' to list commands.`);
+Type 'help' to list available commands.`);
     }
 
     input.value = "";
     screen.scrollTop = screen.scrollHeight;
   }
 });
+
+/* ================= PRINT ================= */
 
 function print(text) {
   const div = document.createElement("div");
